@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aravind's Blog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4a90e2, #0077b6);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    .blog-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .blog-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .blog-card h3 {
+      margin: 0 0 0.5rem;
+      color: #0077b6;
+    }
+
+    .blog-content {
+      display: none;
+      margin-top: 2rem;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      animation: fadeIn 0.5s ease;
+    }
+
+    .blog-content h2 {
+      color: #0077b6;
+    }
+
+    .close-btn {
+      background: crimson;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      padding: 1rem;
+      background: #0077b6;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Aravind's Blog ✍️</h1>
+    <p>Sharing knowledge, updates, and ideas</p>
+  </header>
+
+  <main>
+    <!-- Blog List -->
+    <section class="blog-list">
+      <div class="blog-card" onclick="openBlog('git')">
+        <h3>Understanding Git Basics</h3>
+        <p>A quick guide to version control with Git.</p>
+      </div>
+      <div class="blog-card" onclick="openBlog('java-python')">
+        <h3>Java vs Python</h3>
+        <p>A comparison of two popular programming languages.</p>
+      </div>
+      <div class="blog-card" onclick="openBlog('cloud')">
+        <h3>Cloud Computing 101</h3>
+        <p>What is the cloud and why is it important?</p>
+      </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section id="blog-content" class="blog-content">
+      <h2 id="blog-title"></h2>
+      <p id="blog-text"></p>
+      <button class="close-btn" onclick="closeBlog()">Close</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Aravind's Blog | Built with ❤️</p>
+  </footer>
+
+  <script>
+    const blogs = {
+      "git": {
+        title: "Understanding Git Basics",
+        text: `Git is a distributed version control system that helps developers collaborate on projects.
+        
+        🔹 Key Features:
+        - Track changes in code.
+        - Branching & merging for parallel development.
+        - Rollback to older versions.
+        
+        ✅ Example Workflow:
+        1. Initialize a repo → \`git init\`
+        2. Stage changes → \`git add .\`
+        3. Commit → \`git commit -m "Message"\`
+        4. Push to GitHub → \`git push origin main\`
+
+        Git is the backbone of open-source projects and modern software engineering.`
+      },
+      "java-python": {
+        title: "Java vs Python",
+        text: `Both Java and Python are powerful, but they shine in different areas.
+
+        🔹 Java:
+        - Compiled & statically typed.
+        - Best for large-scale enterprise apps.
+        - Very fast and memory-efficient.
+        - Example: Banking systems, Android apps.
+
+        🔹 Python:
+        - Interpreted & dynamically typed.
+        - Extremely beginner-friendly.
+        - Slower than Java, but great for AI/ML, data science.
+        - Example: Machine learning, web apps (Django, Flask).
+
+        🚀 Conclusion:
+        - Use **Java** if you need performance & scalability.
+        - Use **Python** if you want quick development & AI integration.`
+      },
+      "cloud": {
+        title: "Cloud Computing 101",
+        text: `Cloud computing is the delivery of computing services like storage, servers, databases, and AI over the internet.
+        
+        🔹 Benefits:
+        - Cost-effective (pay as you go).
+        - Scalable (scale up/down instantly).
+        - Reliable (data backup & disaster recovery).
+        
+        🔹 Types of Clouds:
+        - Public Cloud (AWS, Azure, GCP).
+        - Private Cloud (for single organizations).
+        - Hybrid Cloud (mix of both).
+
+        ✅ Example:
+        Netflix uses cloud to stream movies globally without needing its own giant server farms.`
+      }
+    };
+
+    function openBlog(key) {
+      document.getElementById("blog-title").innerText = blogs[key].title;
+      document.getElementById("blog-text").innerText = blogs[key].text;
+      document.getElementById("blog-content").style.display = "block";
+      window.scrollTo({ top: document.getElementById("blog-content").offsetTop, behavior: 'smooth' });
+    }
+
+    function closeBlog() {
+      document.getElementById("blog-content").style.display = "none";
+    }
+  </script>
+</body>
+</html>
